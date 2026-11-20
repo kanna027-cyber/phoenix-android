@@ -47,10 +47,10 @@ jobs:
       - name: Build APK arm64 only
         run: |
           if [ -f "main.py" ]; then
-            flet build apk --target-platform android-arm64 --verbose
+            flet build apk --verbose
           elif [ -f "phoenix_android_v503.py" ]; then
             cp phoenix_android_v503.py main.py
-            flet build apk --target-platform android-arm64 --verbose
+            flet build apk --verbose
           else
             echo "ERROR: No main.py found!"
             exit 1
