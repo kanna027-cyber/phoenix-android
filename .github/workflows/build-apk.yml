@@ -21,7 +21,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.4'
+          flutter-version: '3.47.9'
           channel: 'stable'
           cache: true
 
@@ -47,10 +47,10 @@ jobs:
       - name: Build APK arm64 only
         run: |
           if [ -f "main.py" ]; then
-            flet build apk --verbose
+            echo "y" | flet build apk --verbose
           elif [ -f "phoenix_android_v503.py" ]; then
             cp phoenix_android_v503.py main.py
-            flet build apk --verbose
+            echo "y" | flet build apk --verbose
           else
             echo "ERROR: No main.py found!"
             exit 1
