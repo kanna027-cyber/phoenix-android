@@ -15,11 +15,11 @@ Or: python -m flet build apk
 import flet as ft
 import threading, os, time, re, shutil
 
-DOWNLOAD_DIR = "/storage/emulated/0/Download/Phoenix"
 try:
+    DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "Phoenix")
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
-except:
-    DOWNLOAD_DIR = os.path.expanduser("~/Download/Phoenix")
+except Exception:
+    DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), "Phoenix")
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 ATTEMPTS = [
@@ -388,6 +388,7 @@ def main(page: ft.Page):
 # Flet 1.1.2 - ft.app is correct. If you got AttributeError before, you were on old flet.
 if __name__ == "__main__":
     ft.run(main)
+
 
 
 
