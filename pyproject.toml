@@ -2,8 +2,8 @@
 name = "phoenix-android"
 version = "5.0.3"
 dependencies = [
-    "flet==0.28.3",
-    "flet-webview==0.28.3",
+    "flet==1.1.2",
+    "flet-webview==1.1.2",
     "yt-dlp",
 ]
 
