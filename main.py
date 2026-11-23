@@ -82,21 +82,13 @@ def main(page: ft.Page):
             ft.Text("Build APK to see real WebView on your phone.", color="#FF9800", size=12, weight="bold"),
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
     else:
-        # ANDROID / OTHER: Real WebView - KEEP IT
-        try:
-            try:
-                from flet_webview import WebView as FletWebView
-                webview = FletWebView(url="https://www.youtube.com", expand=True)
-            except:
-                webview = ft.WebView(url="https://www.youtube.com", expand=True)
-            webview_holder.content = webview
-        except Exception as e:
-            webview = None
-            webview_holder.content = ft.Column([
-                ft.Text("Phoenix WebView", color="white", size=16, weight="bold"),
-                ft.Text("WebView could not load, but Download still works.", color="grey", size=13),
-                ft.Text("Use Paste Link + Download below.", color="grey", size=12),
-            ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+        # ANDROID: No WebView in Flet 0.28.3 - use placeholder, download still works
+        webview_holder.content = ft.Column([
+           ft.Text("Phoenix WebView", color="white", size=16, weight="bold"),
+           ft.Text("Web preview not available in this build", color="grey", size=13),
+           ft.Text("Use Paste Link + Download below - it still works!", color="#00FF88", size=12),
+           ft.FilledButton("Open YouTube in Browser", on_click=lambda e: page.launch_url("https://www.youtube.com")),
+      ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
 
     url_bar = ft.TextField(value="https://www.youtube.com", expand=True, text_size=13, bgcolor="white", color="black", border_radius=8)
     def go_url(e=None):
