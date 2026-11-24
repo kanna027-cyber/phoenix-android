@@ -81,7 +81,7 @@ def main(page: ft.Page):
             ft.Text("Use Paste Link + Download below - that is Phoenix power.", color="grey", size=12),
             ft.Text("Build APK to see real WebView on your phone.", color="#FF9800", size=12, weight="bold"),
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
-   else:
+    else:
         # ANDROID: Real WebView
         try:
            try:
