@@ -81,16 +81,16 @@ def main(page: ft.Page):
             ft.Text("Use Paste Link + Download below - that is Phoenix power.", color="grey", size=12),
             ft.Text("Build APK to see real WebView on your phone.", color="#FF9800", size=12, weight="bold"),
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
-    else:
+   else:
         # ANDROID: Real WebView
         try:
-            try:
-                from flet_webview import WebView as FletWebView
-                webview = FletWebView(url="https://www.youtube.com", expand=True)
-            except:
-                webview = ft.WebView(url="https://www.youtube.com", expand=True)
-            webview_holder.content = webview
-       except Exception as e:
+           try:
+               from flet_webview import WebView as FletWebView
+               webview = FletWebView(url="https://www.youtube.com", expand=True)
+           except:
+               webview = ft.WebView(url="https://www.youtube.com", expand=True)
+           webview_holder.content = webview
+        except Exception as e:
            webview = None
            webview_holder.content = ft.Column([
                ft.Text("Phoenix WebView", color="white", size=16, weight="bold"),
