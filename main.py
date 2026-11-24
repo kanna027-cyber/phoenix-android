@@ -18,8 +18,7 @@ import threading, os, time, re, shutil
 # Real Downloads folder - visible in Files app
 try:
     DOWNLOAD_DIR = "/storage/emulated/0/Download/Phoenix"
-    try:
-        os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 except:
     DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "Phoenix")
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
