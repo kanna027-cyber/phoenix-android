@@ -386,7 +386,7 @@ def main(page: ft.Page):
 
 # Flet 1.1.2 - ft.app is correct. If you got AttributeError before, you were on old flet.
 if __name__ == "__main__":
-   ft.app(target=main)
+   ft.run(main)
 
 
 
