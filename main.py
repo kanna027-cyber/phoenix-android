@@ -352,8 +352,8 @@ def main(page: ft.Page):
         # Nav row
         ft.Container(
             content=ft.Row([
-                ft.FilledButton("◀", bgcolor="white", color="black", on_click=lambda e: webview.go_back() if webview else None, width=40),
-                ft.FilledButton("▶", bgcolor="white", color="black", on_click=lambda e: webview.go_forward() if webview else None, width=40),
+                ft.FilledButton("◀", bgcolor="white", color="black", on_click=lambda e: webview.back() if webview else None, width=40),
+                ft.FilledButton("▶", bgcolor="white", color="black", on_click=lambda e: webview.forward() if webview else None, width=40),
                 ft.FilledButton("↻", bgcolor="white", color="black", on_click=lambda e: webview.reload() if webview else None, width=40),
                 url_bar,
                 ft.FilledButton("GO →", bgcolor="#FF0000", color="white", on_click=go_url),
