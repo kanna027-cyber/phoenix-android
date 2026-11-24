@@ -15,13 +15,14 @@ Or: python -m flet build apk
 import flet as ft
 import threading, os, time, re, shutil
 
+# Real Downloads folder - visible in Files app
 try:
+    DOWNLOAD_DIR = "/storage/emulated/0/Download/Phoenix"
+    try:
+        os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+except:
     DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "Phoenix")
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
-except Exception:
-    DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), "Phoenix")
-    os.makedirs(DOWNLOAD_DIR, exist_ok=True)
-
 ATTEMPTS = [
     {'label': 'android+web', 'args': {'youtube': {'player_client': ['android','web']}}},
     {'label': 'web', 'args': {'youtube': {'player_client': ['web']}}},
@@ -83,10 +84,19 @@ def main(page: ft.Page):
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
     else:
         # ANDROID: Real WebView
+        # Track current page for Scan - so Scan scans the video you're on, not homepage
+        current_url = {"url": "https://www.youtube.com"}
+        def on_web_url_change(e):
+            current_url["url"] = e.url
+            try:
+                url_bar.value = e.url
+                page.update()
+            except:
+                pass
         try:
            try:
                from flet_webview import WebView as FletWebView
-               webview = FletWebView(url="https://www.youtube.com", expand=True)
+               webview = FletWebView(url="https://www.youtube.com", expand=True, on_url_change=on_web_url_change)
            except:
                webview = ft.WebView(url="https://www.youtube.com", expand=True)
            webview_holder.content = webview
@@ -194,7 +204,7 @@ def main(page: ft.Page):
         log(f"⚠️ Scan failed. Try Paste Link + Download Pasted. {last_err[:80]}")
 
     def scan_page(e):
-        url = url_bar.value.strip() or "https://www.youtube.com"
+        url = (url_bar.value.strip() if url_bar.value else "") or current_url.get("url", "https://www.youtube.com")
         log(f"Scanning: {url}")
         threading.Thread(target=do_scan, args=(url,), daemon=True).start()
 
